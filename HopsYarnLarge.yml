@@ -1,0 +1,54 @@
+name: HopsYARNLarge
+ec2:
+  ami: ami-efb29698
+  region: eu-west-1
+  subnet: subnet-6ce7b209
+  type: c3.8xlarge
+  vpc: vpc-13fb6176
+cookbooks:
+  ndb:
+    branch: master
+    github: hopshadoop/ndb-chef
+  hops:
+    branch: master
+    github: hopshadoop/hops-hadoop-chef
+  yarn-bench:
+    branch: master
+    github: hopshadoop/yarn-bench
+attrs:
+  ndb:
+    NoOfReplicas: '2'
+    IndexMemory: '200'
+    DataMemory: '1000'
+    root_dir: /mnt/mysql-cluster
+    ThreadConfig: main={count=1,cpubind=0},io={count=1,cpubind=1},rep={count=1,cpubind=2},recv={count=4,cpubind=3-6},send={count=4,cpubind=7-10},ldm={count=12,cpubind=11-22},tc={count=8,cpubind=23-30}
+    NoOfFragmentLogParts: '12'
+  hops:
+    nn:
+      heap_size: '3000'
+      direct_memory_size: '4000'
+groups:
+  resourcemanager:
+    size: 1
+    recipes:
+    - ndb::mgmd
+    - hops::ndb
+    - hops::rm
+  resourcetrackers:
+    size: 2
+    recipes:
+    - ndb::install
+    - hops::ndb
+    - hops::rt
+  datanodes:
+    size: 2
+    recipes:
+    - ndb::ndbd
+  simulators:
+    size: 3
+    recipes:
+    - ndb::install
+    - hops::ndb
+    - hops::client
+    - yarn-bench::experiment
+
