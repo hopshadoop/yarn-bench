@@ -1,4 +1,4 @@
-name: HopsYARNLarge
+name: HopsYARNMedium
 ec2:
   ami: ami-efb29698
   region: eu-west-1
@@ -19,13 +19,9 @@ attrs:
   ndb:
     NoOfReplicas: '2'
     IndexMemory: '50'
-    DataMemory: '400'
+    DataMemory: '300'
     root_dir: /mnt/mysql-cluster
-    NoOfFragmentLogParts: '8'
-  hops:
-    rm:
-      heap_size: '3000'
-      direct_memory_size: '4000'
+    NoOfFragmentLogParts: '6'
 groups:
   resourcemanager:
     size: 1
@@ -34,7 +30,11 @@ groups:
     - hops::ndb
     - hops::rm
   resourcetrackers:
-    size: 2
+    size: 1
+    attrs:
+      hadoop:
+        yarn:
+           rt: true
     recipes:
     - ndb::install
     - hops::ndb
@@ -44,7 +44,7 @@ groups:
     recipes:
     - ndb::ndbd
   simulators:
-    size: 3
+    size: 1
     recipes:
     - ndb::install
     - hops::ndb
