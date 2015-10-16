@@ -1,0 +1,9 @@
+dependencies:
+  - recipe: yarn-bench::install
+  - recipe: yarn-bench::experiment
+    local:
+      - yarn-bench::install
+    global:
+      - hadoop::install
+
+
