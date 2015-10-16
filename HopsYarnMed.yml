@@ -15,6 +15,9 @@ cookbooks:
   yarn-bench:
     branch: master
     github: hopshadoop/yarn-bench
+  hadoop:
+    branch: master
+    github: hopshadoop/apache-hadoop-chef
 attrs:
   ndb:
     NoOfReplicas: '2'
@@ -22,6 +25,9 @@ attrs:
     DataMemory: '300'
     root_dir: /mnt/mysql-cluster
     NoOfFragmentLogParts: '6'
+  hops:
+    yarn:
+      rt: "true"
 groups:
   resourcemanager:
     size: 1
@@ -31,10 +37,6 @@ groups:
     - hops::rm
   resourcetrackers:
     size: 1
-    attrs:
-      hadoop:
-        yarn:
-           rt: true
     recipes:
     - ndb::install
     - hops::ndb
