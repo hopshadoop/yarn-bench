@@ -31,6 +31,14 @@ remote_file "/srv/hadoop/lib/native/libhopsndbevent.so" do
       action :create_if_missing
 end
 
+ark "flink" do
+  url "http://snurran.sics.se/hops/load.tar.gz"
+  version "0.1"
+  path "/srv"
+  home_dir "/srv/yarnbench"
+  owner node[:hadoop][:yarn][:user]
+end
+
 # Configuration Files
 
 
