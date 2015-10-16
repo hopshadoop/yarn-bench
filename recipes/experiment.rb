@@ -1,8 +1,8 @@
 
 script 'run_experiment' do
   cwd "/tmp"
-  user node['yarn-bench']['user']
-  group node['yarn-bench']['group']
+  user node['yarnbench']['user']
+  group node['yarnbench']['group']
   interpreter "bash"
   code <<-EOM
 

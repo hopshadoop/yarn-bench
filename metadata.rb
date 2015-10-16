@@ -19,11 +19,11 @@ end
 
 
 
-attribute "yarn-bench/group",
+attribute "yarnbench/group",
 :description => "group parameter value",
 :type => "string"
 
-attribute "yarn-bench/user",
+attribute "yarnbench/user",
 :description => "user parameter value",
 :type => "string"
 

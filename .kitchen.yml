@@ -20,7 +20,9 @@ suites:
   - name: default
     run_list:
       - recipe[kagent::install]
+      - recipe[hops::install]
       - recipe[yarn-bench::install]
+      - recipe[hops::rm]
       - recipe[yarn-bench::experiment]
 
     attributes:
@@ -30,6 +32,10 @@ suites:
                 public_ips: ["10.0.2.15"]
             private_ips: ["10.0.2.15"]
             public_ips: ["10.0.2.15"]
+         hadoop:
+            yarn:
+               private_ips: ["10.0.2.15"]
+               public_ips: ["10.0.2.15"]
          kagent:
             private_ips: ["10.0.2.15"]
             public_ips: ["10.0.2.15"]

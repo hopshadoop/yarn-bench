@@ -6,4 +6,5 @@ source 'https://supermarket.chef.io'
 cookbook 'kagent', github: 'karamelchef/kagent-chef', branch: 'master'
 metadata
 cookbook 'hops', github: 'hopshadoop/hops-hadoop-chef'
+cookbook 'ndb', github: 'hopshadoop/ndb-chef'
 cookbook 'ark'
