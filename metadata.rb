@@ -10,7 +10,8 @@ recipe            "yarn-bench::experiment",  "configFile=; Experiment name: expe
 
 
 depends "kagent"
-
+depends "hops"
+depends "hadoop"
 
 
 %w{ ubuntu debian rhel centos }.each do |os|

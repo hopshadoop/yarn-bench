@@ -31,7 +31,7 @@ remote_file "/srv/hadoop/lib/native/libhopsndbevent.so" do
       action :create_if_missing
 end
 
-ark "flink" do
+ark "yarnbench" do
   url "http://snurran.sics.se/hops/load.tar.gz"
   version "0.1"
   path "/srv"
